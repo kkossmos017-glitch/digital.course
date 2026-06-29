@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Цифровой продукт за 7 дней — Мини-курс</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg: #07070d;
+  --surface: #10101a;
+  --card: #16161f;
+  --border: #252535;
+  --accent: #b8ff3c;
+  --accent2: #7c3aed;
+  --accent3: #f59e0b;
+  --pink: #f472b6;
+  --text: #e8e8f0;
+  --muted: #6b6b80;
+  --soft: #9090a8;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.65;
+}
+
+/* ═══════════════════════════════
+   LANDING / SALES PAGE
+═══════════════════════════════ */
+#landing {
+  min-height: 100vh;
+}
+
+/* Hero */
+.lp-hero {
+  position: relative;
+  padding: 80px 24px 64px;
+  text-align: center;
+  overflow: hidden;
+}
+.lp-hero::before {
+  content:'';
+  position:absolute; inset:0;
+  background: radial-gradient(ellipse 90% 70% at 50% -10%, rgba(124,58,237,.35) 0%, transparent 65%);
+  pointer-events:none;
+}
+.lp-hero::after {
+  content:'';
+  position:absolute; bottom:0; left:0; right:0; height:1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+.eyebrow {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background: rgba(184,255,60,.07);
+  border: 1px solid rgba(184,255,60,.25);
+  color: var(--accent);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  padding:6px 16px;
+  border-radius:100px;
+  margin-bottom:28px;
+}
+
+.lp-h1 {
+  font-family:'Unbounded', sans-serif;
+  font-size: clamp(28px, 7vw, 60px);
+  font-weight:900;
+  line-height:1.08;
+  margin-bottom:20px;
+  background: linear-gradient(140deg, #fff 30%, var(--accent) 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+.lp-sub {
+  font-size: clamp(15px, 2.5vw, 18px);
+  color: var(--soft);
+  max-width:560px;
+  margin:0 auto 40px;
+}
+
+/* Price block */
+.price-block {
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  gap:20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius:24px;
+  padding:36px 48px;
+  margin-bottom:40px;
+  position:relative;
+  overflow:hidden;
+}
+.price-block::before {
+  content:'';
+  position:absolute; top:0; left:0; right:0; height:2px;
+  background: linear-gradient(90deg, var(--accent2), var(--accent));
+}
+.price-label { font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:.1em; }
+.price-num {
+  font-family:'Unbounded', sans-serif;
+  font-size: clamp(40px,8vw,68px);
+  font-weight:900;
+  color:var(--accent);
+  line-height:1;
+}
+.price-note { font-size:13px; color:var(--muted); }
+
+.cta-btn {
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  background: var(--accent);
+  color: #000;
+  font-family:'Unbounded', sans-serif;
+  font-size:14px;
+  font-weight:700;
+  padding:18px 40px;
+  border-radius:100px;
+  border:none;
+  cursor:pointer;
+  transition: transform .2s, box-shadow .2s;
+  box-shadow: 0 0 40px rgba(184,255,60,.25);
+  text-decoration:none;
+}
+.cta-btn:hover {
+  transform:translateY(-2px);
+  box-shadow: 0 0 60px rgba(184,255,60,.4);
+}
+
+.secure-note {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-size:12px;
+  color:var(--muted);
+}
+
+/* What's inside */
+.lp-section {
+  padding:64px 24px;
+  max-width:800px;
+  margin:0 auto;
+}
+.lp-section + .lp-section {
+  border-top:1px solid var(--border);
+}
+
+.section-eyebrow {
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:12px;
+}
+.section-h2 {
+  font-family:'Unbounded', sans-serif;
+  font-size: clamp(20px,4vw,32px);
+  font-weight:700;
+  line-height:1.2;
+  margin-bottom:12px;
+}
+.section-desc { color:var(--muted); font-size:15px; margin-bottom:32px; }
+
+/* Module grid */
+.module-grid {
+  display:grid;
+  gap:16px;
+}
+.module-card {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:24px;
+  display:grid;
+  grid-template-columns:48px 1fr;
+  gap:16px;
+  align-items:start;
+}
+.module-num {
+  width:48px; height:48px;
+  background: rgba(124,58,237,.15);
+  border: 1px solid rgba(124,58,237,.3);
+  border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Unbounded', sans-serif;
+  font-size:16px;
+  font-weight:900;
+  color:var(--accent2);
+}
+.module-title { font-weight:600; font-size:15px; margin-bottom:6px; }
+.module-desc { font-size:13px; color:var(--muted); line-height:1.6; }
+.module-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+.tag {
+  background:rgba(184,255,60,.08);
+  border:1px solid rgba(184,255,60,.15);
+  color:var(--accent);
+  font-size:11px;
+  font-weight:500;
+  padding:3px 10px;
+  border-radius:100px;
+}
+
+/* Benefits list */
+.benefits { list-style:none; display:flex; flex-direction:column; gap:14px; }
+.benefits li {
+  display:flex; gap:14px; align-items:flex-start;
+  font-size:14px;
+}
+.b-icon {
+  width:28px; height:28px;
+  background: rgba(184,255,60,.1);
+  border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:14px;
+  flex-shrink:0;
+  margin-top:1px;
+}
+.b-text strong { display:block; font-weight:600; margin-bottom:2px; }
+.b-text span { color:var(--muted); font-size:13px; }
+
+/* Social proof */
+.reviews { display:grid; gap:16px; }
+.review-card {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:20px;
+}
+.review-stars { color:var(--accent3); font-size:14px; margin-bottom:10px; }
+.review-text { font-size:14px; color:var(--soft); line-height:1.65; margin-bottom:12px; }
+.review-author { font-size:12px; font-weight:600; color:var(--muted); }
+
+/* FAQ */
+.faq { display:flex; flex-direction:column; gap:2px; }
+.faq-item {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+  margin-bottom:8px;
+}
+.faq-q {
+  width:100%;
+  background:none;
+  border:none;
+  color:var(--text);
+  font-family:'Inter', sans-serif;
+  font-size:14px;
+  font-weight:600;
+  text-align:left;
+  padding:18px 20px;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+.faq-q:hover { color:var(--accent); }
+.faq-arrow { color:var(--muted); font-size:18px; transition:transform .25s; flex-shrink:0; }
+.faq-item.open .faq-arrow { transform:rotate(45deg); color:var(--accent); }
+.faq-a {
+  display:none;
+  padding:0 20px 18px;
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.7;
+}
+.faq-item.open .faq-a { display:block; }
+
+/* CTA bottom */
+.lp-cta-bottom {
+  padding:80px 24px;
+  text-align:center;
+  background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(124,58,237,.2) 0%, transparent 70%);
+  border-top:1px solid var(--border);
+}
+
+/* ═══════════════════════════════
+   COURSE CONTENT (after purchase)
+═══════════════════════════════ */
+#course { display:none; }
+
+.course-nav {
+  position:sticky; top:0; z-index:100;
+  background:rgba(7,7,13,.96);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.course-nav::-webkit-scrollbar { display:none; }
+.course-nav-inner {
+  display:flex;
+  padding:0 20px;
+  min-width:max-content;
+  align-items:center;
+  gap:4px;
+}
+.nav-btn {
+  background:none; border:none;
+  color:var(--muted);
+  font-family:'Inter', sans-serif;
+  font-size:13px; font-weight:500;
+  padding:14px 16px;
+  cursor:pointer;
+  border-bottom:2px solid transparent;
+  transition:all .2s;
+  white-space:nowrap;
+}
+.nav-btn:hover { color:var(--text); }
+.nav-btn.active { color:var(--accent); border-bottom-color:var(--accent); }
+
+.course-section {
+  display:none;
+  max-width:720px;
+  margin:0 auto;
+  padding:48px 24px 80px;
+}
+.course-section.active { display:block; }
+
+/* Section headers */
+.cs-tag {
+  font-size:11px; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:10px;
+}
+.cs-title {
+  font-family:'Unbounded', sans-serif;
+  font-size: clamp(22px,5vw,34px);
+  font-weight:700; line-height:1.15;
+  margin-bottom:14px;
+}
+.cs-lead {
+  font-size:16px; color:var(--soft);
+  margin-bottom:36px;
+  max-width:600px;
+}
+
+/* Content blocks */
+.content-block {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:28px;
+  margin-bottom:20px;
+}
+.cb-title {
+  display:flex; align-items:center; gap:12px;
+  font-weight:700; font-size:16px;
+  margin-bottom:14px;
+}
+.cb-icon {
+  width:36px; height:36px;
+  border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:18px; flex-shrink:0;
+}
+.ic-g { background:rgba(184,255,60,.12); }
+.ic-p { background:rgba(124,58,237,.18); }
+.ic-a { background:rgba(245,158,11,.12); }
+.ic-r { background:rgba(244,114,182,.12); }
+
+.content-block p {
+  font-size:14px; color:var(--soft);
+  line-height:1.75; margin-bottom:12px;
+}
+.content-block p:last-child { margin-bottom:0; }
+
+.highlight {
+  background: rgba(184,255,60,.06);
+  border-left:3px solid var(--accent);
+  border-radius:0 10px 10px 0;
+  padding:16px 20px;
+  margin:16px 0;
+}
+.highlight .hl-label {
+  font-size:11px; font-weight:700;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:6px;
+}
+.highlight p { color:var(--text); font-size:14px; }
+
+.step-list { list-style:none; display:flex; flex-direction:column; gap:0; }
+.step-item {
+  display:flex; gap:16px; align-items:flex-start;
+  padding:16px 0;
+  border-bottom:1px solid var(--border);
+}
+.step-item:last-child { border-bottom:none; }
+.step-n {
+  width:28px; height:28px;
+  background:rgba(124,58,237,.2);
+  border:1px solid rgba(124,58,237,.4);
+  border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:12px; font-weight:700; color:#a78bfa;
+  flex-shrink:0; margin-top:2px;
+}
+.step-body strong { display:block; font-size:14px; font-weight:600; margin-bottom:4px; }
+.step-body span { font-size:13px; color:var(--muted); line-height:1.6; }
+
+/* Prompt box */
+.prompt-box {
+  background:#0a0a12;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:22px;
+  margin:20px 0;
+  position:relative;
+}
+.pl { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#a78bfa; margin-bottom:10px; }
+.pt {
+  font-size:13px; color:#8888a8;
+  line-height:1.75; font-family:monospace;
+  white-space:pre-wrap;
+}
+.copy-btn {
+  position:absolute; top:16px; right:16px;
+  background:var(--card); border:1px solid var(--border);
+  color:var(--muted); font-size:12px;
+  padding:5px 12px; border-radius:6px;
+  cursor:pointer; transition:all .2s;
+  font-family:'Inter',sans-serif;
+}
+.copy-btn:hover, .copy-btn.copied { color:var(--accent); border-color:rgba(184,255,60,.4); }
+
+hr.div { border:none; border-top:1px solid var(--border); margin:32px 0; }
+
+/* Checklist interactive */
+.progress-wrap { margin-bottom:28px; }
+.progress-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+.progress-label { font-size:13px; color:var(--muted); }
+.progress-pct { font-size:13px; font-weight:700; color:var(--accent); }
+.progress-bar { height:6px; background:var(--border); border-radius:100px; overflow:hidden; }
+.progress-fill { height:100%; background:linear-gradient(90deg,var(--accent2),var(--accent)); border-radius:100px; transition:width .4s ease; width:0%; }
+
+.cl { list-style:none; }
+.cl li {
+  display:flex; gap:14px; align-items:flex-start;
+  padding:13px 0; border-bottom:1px solid var(--border);
+  cursor:pointer; transition:opacity .2s; font-size:14px;
+}
+.cl li:last-child { border-bottom:none; }
+.cl li.done { opacity:.45; }
+.cb2 {
+  width:22px; height:22px;
+  border:2px solid var(--border);
+  border-radius:6px; flex-shrink:0; margin-top:1px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; transition:all .2s;
+}
+.done .cb2 { background:var(--accent); border-color:var(--accent); color:#000; }
+.cl-label strong { display:block; font-weight:600; margin-bottom:2px; }
+.cl-label span { font-size:13px; color:var(--muted); }
+
+/* Timeline */
+.timeline { position:relative; padding-left:32px; }
+.timeline::before {
+  content:''; position:absolute;
+  left:10px; top:8px; bottom:8px; width:2px;
+  background:linear-gradient(180deg, var(--accent2), var(--accent));
+  border-radius:2px;
+}
+.tl-item { position:relative; margin-bottom:28px; }
+.tl-dot {
+  position:absolute; left:-26px; top:5px;
+  width:14px; height:14px; border-radius:50%;
+  background:var(--accent); border:3px solid var(--bg);
+  box-shadow:0 0 0 2px var(--accent);
+}
+.tl-day { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:4px; }
+.tl-task { font-weight:700; font-size:15px; margin-bottom:6px; }
+.tl-desc { font-size:13px; color:var(--muted); line-height:1.65; }
+
+/* Platform compare */
+.platform-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; }
+@media(max-width:480px){ .platform-grid { grid-template-columns:1fr; } }
+.platform-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:14px; padding:22px;
+}
+.pname {
+  font-family:'Unbounded', sans-serif;
+  font-size:14px; font-weight:700; margin-bottom:8px;
+}
+.pfee {
+  display:inline-block;
+  background:rgba(245,158,11,.12); color:var(--accent3);
+  font-size:11px; font-weight:600;
+  padding:3px 10px; border-radius:100px; margin-bottom:12px;
+}
+.ppros { list-style:none; display:flex; flex-direction:column; gap:6px; }
+.ppros li { font-size:13px; color:var(--muted); }
+.ppros li::before { content:'✓  '; color:var(--accent); }
+
+/* info box */
+.info-box {
+  background:rgba(124,58,237,.08);
+  border:1px solid rgba(124,58,237,.25);
+  border-radius:12px; padding:18px 20px;
+  margin:18px 0;
+}
+.info-box p { font-size:14px; color:var(--soft); }
+.info-box p strong { color:var(--text); }
+
+/* ═══════════════ RESPONSIVE ═══════════════ */
+@media(max-width:600px) {
+  .price-block { padding:28px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     LANDING PAGE
+═══════════════════════════════════════ -->
+<div id="landing">
+
+  <!-- Hero -->
+  <div class="lp-hero">
+    <div class="eyebrow">⚡ Мини-курс · ИИ-метод · 7 дней</div>
+    <h1 class="lp-h1">Создай и продай<br>первый цифровой продукт</h1>
+    <p class="lp-sub">Пошаговый курс: от идеи до первых продаж с помощью ИИ. Без опыта, без команды, без большого бюджета.</p>
+
+    <div class="price-block">
+      <span class="price-label">Полный доступ к курсу</span>
+      <span class="price-num">😊</span>
+      <span class="price-note">Единоразовый платёж · Вечный доступ</span>
+      <button class="cta-btn" onclick="unlockCourse()">
+        Перейти к обучению →
+      </button>
+      <div class="secure-note">🔒 Безопасная оплата · Мгновенный доступ</div>
+    </div>
+  </div>
+
+  <!-- What's inside -->
+  <div class="lp-section">
+    <div class="section-eyebrow">Программа курса</div>
+    <h2 class="section-h2">5 разделов — всё что нужно для старта</h2>
+    <p class="section-desc">Никакой воды. Только практика: структура, инструменты, промпты и пошаговый план.</p>
+    <div class="module-grid">
+      <div class="module-card">
+        <div class="module-num">01</div>
+        <div>
+          <div class="module-title">Почему это работает?</div>
+          <div class="module-desc">Разбираем мифы об инфобизнесе. Как ИИ сократил время создания курса с 30 дней до 2 часов — и почему сейчас лучший момент для старта.</div>
+          <div class="module-tags"><span class="tag">Мифы</span><span class="tag">Возможности ИИ</span><span class="tag">Мышление</span></div>
+        </div>
+      </div>
+      <div class="module-card">
+        <div class="module-num">02</div>
+        <div>
+          <div class="module-title">Поиск ниши и темы</div>
+          <div class="module-desc">Метод «Поиск боли»: где и как найти тему, за которую люди уже платят. Формула выбора + 3 вопроса для проверки спроса.</div>
+          <div class="module-tags"><span class="tag">Ниша</span><span class="tag">Валидация</span><span class="tag">Формула темы</span></div>
+        </div>
+      </div>
+      <div class="module-card">
+        <div class="module-num">03</div>
+        <div>
+          <div class="module-title">Создание контента</div>
+          <div class="module-desc">Структура через ИИ, написание текста, оформление в Canva. Готовые промпты «копируй-вставляй» для каждого этапа.</div>
+          <div class="module-tags"><span class="tag">ChatGPT</span><span class="tag">Gemini</span><span class="tag">Canva</span><span class="tag">Промпты</span></div>
+        </div>
+      </div>
+      <div class="module-card">
+        <div class="module-num">04</div>
+        <div>
+          <div class="module-title">Упаковка и продажи</div>
+          <div class="module-desc">Gumroad vs Lemon Squeezy — что выбрать. Как написать продающую страницу за 15 минут. 7-дневный план запуска.</div>
+          <div class="module-tags"><span class="tag">Gumroad</span><span class="tag">Продающая страница</span><span class="tag">Запуск</span></div>
+        </div>
+      </div>
+      <div class="module-card">
+        <div class="module-num">05</div>
+        <div>
+          <div class="module-title">Чек-лист: 20 шагов</div>
+          <div class="module-desc">Интерактивный чек-лист от идеи до первой продажи + набор готовых промптов для всего курса.</div>
+          <div class="module-tags"><span class="tag">Чек-лист</span><span class="tag">Промпты</span><span class="tag">Практика</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Benefits -->
+  <div class="lp-section">
+    <div class="section-eyebrow">Что ты получишь</div>
+    <h2 class="section-h2">Всё для первого запуска</h2>
+    <p class="section-desc">Курс даёт не знания — а конкретный результат. После прохождения у тебя будет готовый продукт на Gumroad.</p>
+    <ul class="benefits">
+      <li><div class="b-icon">📐</div><div class="b-text"><strong>Структура любого гайда за 5 минут</strong><span>Метод работы с ИИ, который убирает главный страх — «с чего начать»</span></div></li>
+      <li><div class="b-icon">✍️</div><div class="b-text"><strong>Промпты для написания каждой главы</strong><span>Готовые шаблоны запросов — скопировал, вставил, получил текст</span></div></li>
+      <li><div class="b-icon">🎨</div><div class="b-text"><strong>Гайд по оформлению в Canva</strong><span>Без дизайнера. Профессиональный PDF за пару часов</span></div></li>
+      <li><div class="b-icon">💳</div><div class="b-text"><strong>Настройка Gumroad за 15 минут</strong><span>Принимаешь оплаты со всего мира уже в первый день</span></div></li>
+      <li><div class="b-icon">🗓️</div><div class="b-text"><strong>7-дневный план по дням</strong><span>Точно знаешь, что делать каждый день — без прокрастинации</span></div></li>
+      <li><div class="b-icon">✅</div><div class="b-text"><strong>Интерактивный чек-лист 20 шагов</strong><span>Не потеряешься. Каждый шаг — конкретное действие</span></div></li>
+    </ul>
+  </div>
+
+  <!-- Social proof -->
+  <div class="lp-section">
+    <div class="section-eyebrow">Отзывы</div>
+    <h2 class="section-h2">Что говорят те, кто прошёл</h2>
+    <p class="section-desc">Реальные результаты от людей без опыта в инфобизнесе.</p>
+    <div class="reviews">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">«За три дня я создала гайд по уходу за ногтями и продала его 12 раз в первую неделю. Промпты реально работают — я вставляла, редактировала под себя и получала готовый текст. Самое ценное — план по дням, без него я бы снова всё откладывала.»</div>
+        <div class="review-author">Мария К. — мастер маникюра, Испания</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">«Я фрилансер-дизайнер и не верила, что смогу сделать курс. Думала, нужно быть "гуру". Раздел про мифы открыл глаза. За 7 дней сделала Notion-шаблон и уже окупила курс в 8 раз.»</div>
+        <div class="review-author">Алина Р. — графический дизайнер</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">«Купил скептически за 15€. Думал, будет общий контент. Но структура конкретная, промпты рабочие, и чек-лист реально помог не потеряться. Gumroad настроил за 20 минут. Рекомендую всем, кто откладывает.»</div>
+        <div class="review-author">Денис В. — SMM-специалист</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="lp-section">
+    <div class="section-eyebrow">Вопросы</div>
+    <h2 class="section-h2">Часто спрашивают</h2>
+    <p class="section-desc" style="margin-bottom:24px;">Если твоего вопроса нет — напиши нам.</p>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Нужен ли опыт в инфобизнесе? <span class="faq-arrow">+</span></button>
+        <div class="faq-a">Нет. Курс создан для тех, кто делает это впервые. Ты знаешь что-то лучше других — этого достаточно. Достаточно быть на один шаг впереди своей аудитории.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Нужно ли платить за Canva или Gumroad? <span class="faq-arrow">+</span></button>
+        <div class="faq-a">Нет. Оба инструмента имеют бесплатные планы, которых хватит для старта. Gumroad берёт комиссию 10% с продаж, но без абонплаты. Canva бесплатно для базового оформления.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Сколько времени нужно в день? <span class="faq-arrow">+</span></button>
+        <div class="faq-a">В среднем 2–3 часа в день в течение 7 дней. Можно совмещать с основной работой. С ИИ-инструментами большая часть рутины автоматизирована.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Что если мой продукт никто не купит? <span class="faq-arrow">+</span></button>
+        <div class="faq-a">Раздел 2 полностью посвящён валидации темы ДО создания продукта. Ты проверяешь спрос заранее, а не после. Это сильно снижает риски.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Я получу доступ сразу после оплаты? <span class="faq-arrow">+</span></button>
+        <div class="faq-a">Да, доступ открывается мгновенно. Весь курс доступен онлайн без скачивания.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA Bottom -->
+  <div class="lp-cta-bottom">
+    <div class="eyebrow" style="margin-bottom:24px;">Готов начать?</div>
+    <h2 style="font-family:'Unbounded',sans-serif;font-size:clamp(22px,5vw,40px);font-weight:900;margin-bottom:16px;line-height:1.1;">Первый продукт —<br>через 7 дней</h2>
+    <p style="color:var(--muted);font-size:15px;margin-bottom:36px;max-width:400px;margin-left:auto;margin-right:auto;">Один раз создал — продаёшь бесконечно. Начни сегодня.</p>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+      <button class="cta-btn" onclick="unlockCourse()">Перейти к обучению →</button>
+      <div class="secure-note">🔒 Единоразовая оплата · Вечный доступ</div>
+    </div>
+  </div>
+
+</div><!-- /landing -->
+
+
+<!-- ═══════════════════════════════════════
+     COURSE CONTENT
+═══════════════════════════════════════ -->
+<div id="course">
+
+  <nav class="course-nav">
+    <div class="course-nav-inner">
+      <button class="nav-btn active" onclick="showS('s1',this)">1. Введение</button>
+      <button class="nav-btn" onclick="showS('s2',this)">2. Ниша</button>
+      <button class="nav-btn" onclick="showS('s3',this)">3. Контент</button>
+      <button class="nav-btn" onclick="showS('s4',this)">4. Продажи</button>
+      <button class="nav-btn" onclick="showS('s5',this)">5. Чек-лист</button>
+    </div>
+  </nav>
+
+  <!-- ── РАЗДЕЛ 1: ВВЕДЕНИЕ ─────────────── -->
+  <div id="s1" class="course-section active">
+    <div class="cs-tag">Раздел 1 · Введение</div>
+    <div class="cs-title">Почему это работает — и почему именно сейчас?</div>
+    <div class="cs-lead">Прежде чем начать создавать, важно понять механику: почему цифровые продукты — это честный способ заработать, и какую роль в этом играет ИИ.</div>
+
+    <div class="content-block">
+      <div class="cb-title"><div class="cb-icon ic-g">🧠</div>Главная идея этого курса</div>
+      <p>Ты не продаёшь информацию. Информация сегодня бесплатна — её можно найти в Google за 30 секунд. Ты продаёшь <strong>структуру, экономию времени и уверенность</strong>. Когда человек покупает твой гайд, он платит не за текст — он платит за то, чтобы не разбираться самому.</p>
+      <p>Именно поэтому цифровые продукты работают даже в переполненных нишах. Тема «Instagram для бизнеса» избита? Но гайд «Instagram для мастеров маникюра — первые 500 подписчиков без рекламы» — это уже конкретно и интересно нужной аудитории.</p>
+      <div class="highlight">
+        <div class="hl-label">Ключевой принцип</div>
+        <p>Узкая тема + конкретный результат = продукт, который покупают. Широкая тема + общие советы = продукт, который игнорируют.</p>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="cb-title"><div class="cb-icon ic-p">🤖</div>Как ИИ изменил правила игры</div>
+      <p>Раньше создание курса занимало 1–3 месяца: исследование → план → написание → редактура → дизайн → техническая настройка. Сегодня ИИ берёт на себя самую трудозатратную часть — генерацию и структурирование текста.</p>
+      <p>Ты остаёшься на месте эксперта и куратора: добавляешь личный опыт, правишь под свой голос, выбираешь лучшее. ИИ не заменяет тебя — он убирает пустую страницу, которая парализует большинство людей.</p>
+      <ul class="step-list">
+        <li class="step-item">
+          <div class="step-n">1</div>
+          <div class="step-body"><strong>Структура</strong><span>ChatGPT/Gemini создаёт полное оглавление за 3 минуты</span></div>
+        </li>
+        <li class="step-item">
+          <div class="step-n">2</div>
+          <div class="step-body"><strong>Текст</strong><span>Каждая глава пишется за 15–20 минут с помощью промпта</span></div>
+        </li>
+        <li class="step-item">
+          <div class="step-n">3</div>
+          <div class="step-body"><strong>Дизайн</strong><span>Canva AI предлагает оформление — ты только выбираешь</span></div>
+        </li>
+        <li class="step-item">
+          <div class="step-n">4</div>
+          <div class="step-body"><strong>Продажи</strong><span>Gumroad автоматически принимает оплату и доставляет файл</span></div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="content-block">
+      <div class="cb-title"><div class="cb-icon ic-a">💡</div>Мифы, которые мешают начать</div>
+      <p><strong>«Нужно быть гуру с 10 годами опыта.»</strong> — Неправда. Достаточно знать на один шаг больше своей аудитории. Если ты год назад разобрался с чем-то, что другие только начинают изучать — у тебя уже есть продукт.</p>
+      <p><strong>«Рынок переполнен, меня никто не купит.»</strong> — Конкуренция означает спрос. Если что-то уже продаётся — люди готовы платить. Твоя задача — сделать более конкретный, более узкий продукт.</p>
+      <p><strong>«Нужен большой бюджет.»</strong> — Всё необходимое бесплатно или стоит меньше 20€ в месяц. ChatGPT (бесплатная версия), Canva (бесплатно), Gumroad (0€ абонплаты, только % с продаж).</p>
+      <p><strong>«Это займёт полгода.»</strong> — 7 дней при работе 2–3 часа в день. Проверено.</p>
+    </div>
+  </div>
+
+  <!-- ── РАЗДЕЛ 2: НИША ─────────────── -->
+  <div id="s2" class="course-section">
+    <div class="cs-tag">Раздел 2 · Выбор темы</div>
+    <div class="cs-title">Найти нишу, за которую платят</div>
+    <div class="cs-lead">Самая частая ошибка — создать продукт и потом пытаться найти покупателей. Мы делаем наоборот: сначала находим боль, потом создаём лекарство.</div>
+
+    <div class="content-block">
+      <div class="cb-title"><div class="cb-icon ic-r">🔍</div>Метод «Поиск боли»</div>
+      <p>Люди не покупают информацию — они покупают решение своей боли. Болью может быть потеря времени, потеря денег, страх, стыд или желание стать лучше. Твой продукт должен попадать в одну из этих категорий.</p>
+      <div class="highlight">
+        <div class="hl-label">Упражнение</div>
+        <p>Запиши 5 вещей, с которыми тебе когда-то было сложно, но сейчас ты разобрался. Каждый из этих пунктов — потенциальная тема продукта.</p>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="cb-title"><div class="cb-icon ic-g">📍</div>Где искать темы — 4 источника</div>
+      <ul class="step-list">
+        <li class="step-item">
+          <div class="step-n">①</div>
+          <div class="step-body"><strong>Google Автодополнение</strong><span>Введи «как [твоя тема]» в поисковую строку и не нажимай Enter. Всё, что появляется в подсказках — реальные запросы реальных людей. Записывай.</span></div>
+        </li>
+        <li class="step-item">
+          <div class="step-n">②</div>
+          <div class="step-body"><strong>Reddit и форумы</strong><span>Ищи посты, которые начинаются с «помогите», «как сделать», «не понимаю». Это чистые боли без маркетинговой обёртки. Особенно полезны разделы типа r/entrepreneur, r/smallbusiness.</span></div>
+        </li>
+        <li class="step-item">
+          <div class="step-n">③</div>
+          <div class="step-body"><strong>Комментарии в Instagram и TikTok</strong><span>Открой аккаунты экспертов в твоей нише. В комментариях под полезными постами — готовый список вопросов от будущих покупателей. Это бесценно.</span></div>
+        </li>
+        <li class="step-item">
+          <div class="step-n">④</div>
+          <div class="step-body"><strong>Gumroad Discover</strong><span>Зайди на gumroad.com/discover и посмотри на бестселлеры в интересующей категории. Если что-то продаётся — спрос есть. Твоя задача — сделать версию для более узкой аудитории.</span></div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="content-block">
+      <div class="cb-title"><div class="cb-icon ic-p">✅</div>3 вопроса для проверки темы</div>
+      <p>Прежде чем тратить время на создание, ответь честно на три вопроса:</p>
+      <ul class="step-list">
+        <li class="step-item">
+          <div class="step-n">?</div>
+          <div class="step-body"><strong>Люди уже платят за это?</strong><span>Найди хотя бы 2–3 похожих продукта с продажами на Gumroad или Etsy. Конкуренция — это хорошо, она подтверждает спрос.</span></div>
+        </li>
+        <li class="step-item">
+          <div class="step-n">?</div>
+          <div class="step-body"><strong>Ты можешь дать конкретный измеримый результат?</strong><span>Не «узнаешь больше о маникюре», а «сделаешь первый French с гелем самостоятельно». Конкретика продаёт.</span></div>
+        </li>
+        <li class="step-item">
+          <div class="step-n">?</div>
+          <div class="step-body"><strong>Тема достаточно узкая?</strong><span>«Фитнес» — слишком широко. «Тренировки дома для мам с детьми до 3 лет» — уже интересно. Чем уже, тем точнее попадание.</span></div>
+        </li>
+      </ul>
+      <div class="highlight">
+        <div class="hl-label">Формула выигрышной темы</div>
+        <p><strong>[Конкретный результат]</strong> для <strong>[узкая аудитория]</strong> за <strong>[реалистичный срок]</strong><br><br>
+        Пример: «Первый дизайн ногтей с гель-лаком в домашних условиях — пошаговый гайд для начинающих»</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── РАЗДЕЛ 3: КОНТЕНТ ─────────────── -->
+  <div id="s3" class="course-section">
+    <div class="cs-tag">Раздел 3 · Производство</div>
+    <div class="cs-title">Создание контента с помощью ИИ</div>
+    <div class="cs-lead">Три шага: структура → текст → дизайн. На каждом этапе — готовый промпт, который можно скопировать прямо сейчас.</div>
+
+    <div class="content-block">
+      <div class="cb-title"><div class="cb-icon ic-p">📐</div>Шаг 1: Структура через ИИ</div>
+      <p>Начни с оглавления — не с текста. Хорошая структура — это уже половина продукта. Отправь этот промпт в ChatGPT или Gemini:</p>
+    </div>
+
+    <div class="prompt-box">
+      <div class="pl">💬 Промпт для структуры</div>
+      <button class="copy-btn" onclick="cp(this)">Копировать</button>
+      <div class="pt" data-t="Создай подробное оглавление для цифрового гайда на тему: [ВСТАВЬ СВОЮ ТЕМУ].
+
+Аудитория: [ОПИСАНИЕ АУДИТОРИИ — кто они, какой уровень знаний].
+
+Требования:
+- Формат: PDF-гайд на 15–20 страниц
+- Структура: введение + 4–5 основных глав с 2–4 подпунктами в каждой + приложение (чек-лист или шаблоны)
+- Стиль: практичный, конкретный, без теоретической воды
+- Каждая глава должна давать читателю один конкретный навык или действие
+
+Для каждой главы укажи:
+1. Название
+2. Что читатель узнает/научится
+3. Ключевые подпункты (3–4 штуки)">Создай подробное оглавление для цифрового гайда на тему: [ВСТАВЬ СВОЮ ТЕМУ].
+
+Аудитория: [ОПИСАНИЕ АУДИТОРИИ — кто они, какой уровень знаний].
+
+Требования:
+- Формат: PDF-гайд на 15–20 страниц
+- Структура: введение + 4–5 основных глав с 2–4 подпунктами в каждой + приложение (чек-лист или шаблоны)
+- Стиль: практичный, конкретный, без теоретической воды
+- Каждая глава должна давать читателю один конкретный навык или действие
+
+Для каждой главы укажи:
+1. Название
+2. Что читатель узнает/научится
+3. Ключевые подпункты (3–4 штуки)</div>
+    </div>
+
+    <div class="info-box">
+      <p>💡 <strong>После получения структуры:</strong> пройдись по каждому пункту и скорректируй под свой опыт. Убери то, в чём не уверен. Добавь темы, о которых тебя часто спрашивают вживую. ИИ даёт каркас — ты придаёшь ему душу.</p>
+    </div>
+
+    <hr class="div">
+
+    <div class="content-block">
+      <div class="cb-title"><div class="cb-icon ic-g">✍️</div>Шаг 2: Написание текста</div>
+      <p>Пиши главу за главой. Главное правило: один промпт — одна глава. После получения текста обязательно добавь <strong>1–2 личных примера или случая из практики</strong>. Это то, что ИИ не может придумать за тебя — и именно это делает продукт ценным.</p>
+    </div>
+
+    <div class="prompt-box">
+      <div class="pl">💬 Промпт для написания главы</div>
+      <button class="copy-btn" onclick="cp(this)">Копировать</button>
+      <div class="pt" data-t="Напиши главу «[НАЗВАНИЕ ГЛАВЫ]» для цифрового гайда о [ТЕМА ГАЙДА].
+
+Аудитория: [КТО ЧИТАЕТ, уровень знаний].
+
+Объём: 400–600 слов.
+
+Требования к стилю:
+- Тон: дружелюбный и прямой, как разговор с другом
+- Никаких клише: «в современном мире», «как никогда актуально», «давайте разберёмся»
+- Активный залог: не «это может быть сделано», а «сделай это»
+- Конкретные примеры, не абстрактные советы
+
+Структура главы:
+1. Короткое вступление — в чём проблема/задача (2–3 предложения)
+2. Основная часть — 3–4 конкретных совета или шага с кратким объяснением каждого
+3. Итог — 1–2 предложения: что читатель теперь умеет/знает">Напиши главу «[НАЗВАНИЕ ГЛАВЫ]» для цифрового гайда о [ТЕМА ГАЙДА].
+
+Аудитория: [КТО ЧИТАЕТ, уровень знаний].
+
+Объём: 400–600 слов.
+
+Требования к стилю:
+- Тон: дружелюбный и прямой, как разговор с другом
+- Никаких клише: «в современном мире», «как никогда актуально», «давайте разберёмся»
+- Активный залог: не «это может быть сделано», а «сделай это»
+- Конкретные примеры, не абстрактные советы
+
+Структура главы:
+1. Короткое вступление — в чём проблема/задача (2–3 предложения)
+2. Основная часть — 3–4 конкретных совета или шага с кратким объяснением каждого
+3. Итог — 1–2 предложения: что читатель теперь умеет/знает</div>
+    </div>
+
+    <hr class="div">
+
+    <div class="content-block">
+      <div class="cb-title"><div class="cb-icon ic-a">🎨</div>Шаг 3: Дизайн в Canva</div>
+      <p>Открой <strong>canva.com</strong> → «Создать дизайн» → «PDF Pro» (или «Презентация» для формата слайдов). Выбери шаблон в нейтральных тонах — слишком яркие шаблоны выглядят дёшево.</p>
+      <ul class="step-list">
+        <li class="step-item"><div class="step-n">1</div><div class="step-body"><strong>Обложка</strong><span>Используй «Magic Design» — введи название гайда и выбери лучший из предложенных вариантов. На обложке должны быть: название, подзаголовок, твоё имя.</span></div></li>
+        <li class="step-item"><div class="step-n">2</div><div class="step-body"><strong>Шрифты</strong><span>Замени на читаемые: Inter, Lato или Montserrat для текста. Один шрифт для заголовков, один для основного текста — не больше двух.</span></div></li>
+        <li class="step-item"><div class="step-n">3</div><div class="step-body"><strong>Цвета</strong><span>Выбери 2–3 цвета: нейтральный фон (белый/светло-серый), основной цвет текста (чёрный/тёмно-серый) и один акцентный для заголовков и выделений.</span></div></li>
+        <li class="step-item"><div class="step-n">4</div><div class="step-body"><strong>Экспорт</strong><span>«Скачать» → «PDF для печати» или «PDF стандартный». Проверь, что все страницы отображаются корректно перед публикацией.</span></div></li>
+      </ul>
+    </div>
+
+    <div class="info-box">
+      <p>🕐 <strong>Совет по времени:</strong> не трать на дизайн больше 3–4 часов. Простое и чистое оформление продаётся лучше, чем сложное и перегруженное. Покупают за содержание, дизайн только не должен мешать читать.</p>
+    </div>
+  </div>
+
+  <!-- ── РАЗДЕЛ 4: ПРОДАЖИ ─────────────── -->
+  <div id="s4" class="course-section">
+    <div class="cs-tag">Раздел 4 · Запуск</div>
+    <div class="cs-title">Упаковка и первые продажи</div>
+    <div class="cs-lead">Продукт готов. Теперь нужно выставить его на продажу, написать описание и получить первых покупателей. Это занимает один день.</div>
+
+    <div class="content-block">
+      <div class="cb-title"><div class="cb-icon ic-g">🛒</div>Где продавать: Gumroad vs Lemon Squeezy</div>
+    </div>
+
+    <div class="platform-grid">
+      <div class="platform-card">
+        <div class="pname">Gumroad</div>
+        <div class="pfee">Комиссия 10%</div>
+        <ul class="ppros">
+          <li>Старт за 10 минут</li>
+          <li>Встроенная аудитория</li>
+          <li>Мгновенные выплаты</li>
+          <li>Защита файлов</li>
+          <li>Нет абонплаты</li>
+        </ul>
+      </div>
+      <div class="platform-card">
+        <div class="pname">Lemon Squeezy</div>
+        <div class="pfee">5% + $0.50</div>
+        <ul class="ppros">
+          <li>Красивее дизайн</li>
+          <li>Налоги автоматически</li>
+          <li>Поддержка подписок</li>
+          <li>Партнёрская программа</li>
+          <li>Лучше для Европы</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <p>👉 <strong>Рекомендация для первого продукта:</strong> начни с Gumroad. Он проще в настройке и имеет встроенный маркетплейс — часть трафика придёт сама. После первых продаж можно перейти на Lemon Squeezy для европейского рынка.</p>
+    </div>
+
+    <hr class="div">
+
+    <div class="content-block">
+      <div class="cb-title"><div class="cb-icon ic-p">📝</div>Продающая страница за 15 минут</div>
+      <p>Страница должна ответить на 4 вопроса покупателя: <strong>Что это? Для кого? Что получу? Почему сейчас?</strong> Используй этот промпт:</p>
+    </div>
+
+    <div class="prompt-box">
+      <div class="pl">💬 Промпт для описания продукта</div>
+      <button class="copy-btn" onclick="cp(this)">Копировать</button>
+      <div class="pt" data-t="Напиши продающее описание для цифрового гайда.
+
+Название: [НАЗВАНИЕ ГАЙДА]
+Цена: [X]€
+Для кого: [АУДИТОРИЯ — кто они, какая у них боль]
+Что внутри: [СПИСОК ИЗ 5–7 КОНКРЕТНЫХ ПУНКТОВ]
+Формат: [PDF / Notion-шаблон / видеокурс]
+
+Структура описания:
+1. Заголовок (описывает проблему или результат, не название гайда)
+2. Абзац «Если ты...» — 3–4 боли аудитории, одним предложением каждая
+3. «Внутри гайда:» — маркированный список из 5–7 пунктов, каждый начинается с глагола
+4. Один абзац о том, кто я и почему мне можно доверять (2–3 предложения)
+5. Призыв к действию — короткое предложение
+
+Требования:
+- Без восклицательных знаков
+- Без слова «уникальный»
+- Без обещаний быстрого обогащения
+- Конкретные цифры, если есть">Напиши продающее описание для цифрового гайда.
+
+Название: [НАЗВАНИЕ ГАЙДА]
+Цена: [X]€
+Для кого: [АУДИТОРИЯ — кто они, какая у них боль]
+Что внутри: [СПИСОК ИЗ 5–7 КОНКРЕТНЫХ ПУНКТОВ]
+Формат: [PDF / Notion-шаблон / видеокурс]
+
+Структура описания:
+1. Заголовок (описывает проблему или результат, не название гайда)
+2. Абзац «Если ты...» — 3–4 боли аудитории, одним предложением каждая
+3. «Внутри гайда:» — маркированный список из 5–7 пунктов, каждый начинается с глагола
+4. Один абзац о том, кто я и почему мне можно доверять (2–3 предложения)
+5. Призыв к действию — короткое предложение
+
+Требования:
+- Без восклицательных знаков
+- Без слова «уникальный»
+- Без обещаний быстрого обогащения
+- Конкретные цифры, если есть</div>
+    </div>
+
+    <hr class="div">
+
+    <div class="content-block">
+      <div class="cb-title"><div class="cb-icon ic-a">🗓️</div>7-дневный план запуска</div>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-day">День 1</div><div class="tl-task">Выбор темы и валидация</div><div class="tl-desc">Метод «Поиск боли». Найди 2–3 похожих продукта на Gumroad с продажами. Запиши формулу своей темы по шаблону из Раздела 2.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-day">День 2</div><div class="tl-task">Структура через ИИ</div><div class="tl-desc">Промпт для оглавления → получи результат → скорректируй под свой опыт. Итог: утверждённая структура из 5 глав.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-day">День 3</div><div class="tl-task">Написание глав 1–2</div><div class="tl-desc">По одному промпту на главу. После каждой — добавь личный пример. Не редактируй до конца — сначала напиши всё.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-day">День 4</div><div class="tl-task">Написание глав 3–5 + приложение</div><div class="tl-desc">Дописываешь основной текст. Создаёшь чек-лист или шаблон как бонус — он поднимает ценность продукта.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-day">День 5</div><div class="tl-task">Дизайн и оформление</div><div class="tl-desc">Canva: обложка + вёрстка текста. Максимум 3–4 часа. Экспорт PDF. Проверь на телефоне — большинство читают на мобильном.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-day">День 6</div><div class="tl-task">Публикация на Gumroad</div><div class="tl-desc">Регистрация → загрузка файла → продающее описание (промпт из этого раздела) → цена → публикация. Сделай скриншот — это важный момент.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-day">День 7</div><div class="tl-task">Первые продажи</div><div class="tl-desc">Пост в Instagram со ссылкой. Сторис «за кулисами» процесса создания. Личные сообщения 10 знакомым, которым тема релевантна. Первые продажи — почти всегда от людей, которые тебя знают.</div></div>
+    </div>
+  </div>
+
+  <!-- ── РАЗДЕЛ 5: ЧЕКЛИСТ ─────────────── -->
+  <div id="s5" class="course-section">
+    <div class="cs-tag">Раздел 5 · Приложение</div>
+    <div class="cs-title">20 шагов: от идеи до первой продажи</div>
+    <div class="cs-lead">Отмечай каждый выполненный шаг. Не двигайся дальше, пока не закрыт предыдущий — это и есть система.</div>
+
+    <div class="progress-wrap">
+      <div class="progress-top">
+        <span class="progress-label">Твой прогресс</span>
+        <span class="progress-pct" id="pct">0 из 20</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="pfill"></div></div>
+    </div>
+
+    <ul class="cl" id="cl">
+      <li onclick="tog(this)"><div class="cb2">✓</div><div class="cl-label"><strong>Записать 5 вещей, в которых ты лучше среднего человека</strong><span>Это твои потенциальные темы. Не фильтруй — пиши всё.</span></div></li>
+      <li onclick="tog(this)"><div class="cb2">✓</div><div class="cl-label"><strong>Выбрать 3 темы-кандидата</strong><span>Из своего списка — те, которые могут решить чужую боль.</span></div></li>
+      <li onclick="tog(this)"><div class="cb2">✓</div><div class="cl-label"><strong>Проверить спрос на Gumroad</strong><span>Найти 2+ похожих продукта с продажами (значок «X продаж»).</span></div></li>
+      <li onclick="tog(this)"><div class="cb2">✓</div><div class="cl-label"><strong>Выбрать одну финальную тему</strong><span>Самую узкую и конкретную. Применить формулу из Раздела 2.</span></div></li>
+      <li onclick="tog(this)"><div class="cb2">✓</div><div class="cl-label"><strong>Сгенерировать оглавление через ИИ</strong><span>Промпт из Раздела 3, Шаг 1. Получить результат.</span></div></li>
+      <li onclick="tog(this)"><div class="cb2">✓</div><div class="cl-label"><strong>Скорректировать структуру</strong><span>Убрать лишнее, добавить темы из своего опыта. Утвердить 5 глав.</span></div></li>
+      <li onclick="tog(this)"><div class="cb2">✓</div><div class="cl-label"><strong>Написать введение</strong><span>Зачем читать этот гайд? Что читатель получит? Кто ты?</span></div></li>
+      <li onclick="tog(this)"><div class="cb2">✓</div><div class="cl-label"><strong>Написать главу 1</strong><span>Промпт + личный пример. Не редактировать — просто написать.</span></div></li>
+      <li onclick="tog(this)"><div class="cb2">✓</div><div class="cl-label"><strong>Написать главу 2</strong><span>Промпт + личный пример.</span></div></li>
+      <li onclick="tog(this)"><div class="cb2">✓</div><div class="cl-label"><strong>Написать главы 3–4</strong><span>Промпт + примеры. Темп важнее перфекционизма.</span></div></li>
+      <li onclick="tog(this)"><div class="cb2">✓</div><div class="cl-label"><strong>Написать заключение + создать чек-лист-бонус</strong><span>Чек-лист поднимает воспринимаемую ценность продукта.</span></div></li>
+      <li onclick="tog(this)"><div class="cb2">✓</div><div class="cl-label"><strong>Сделать быструю редактуру всего текста</strong><span>Убери воду. Добавь личных примеров там, где их не хватает.</span></div></li>
+      <li onclick="tog(this)"><div class="cb2">✓</div><div class="cl-label"><strong>Открыть Canva и выбрать шаблон PDF</strong><span>Нейтральные тона, читаемый шрифт, максимум 3 цвета.</span></div></li>
+      <li onclick="tog(this)"><div class="cb2">✓</div><div class="cl-label"><strong>Оформить PDF — вставить весь текст</strong><span>Обложка + все главы. Проверить на мобильном устройстве.</span></div></li>
+      <li onclick="tog(this)"><div class="cb2">✓</div><div class="cl-label"><strong>Экспортировать готовый PDF</strong><span>Скачать → проверить все страницы → сохранить финальный файл.</span></div></li>
+      <li onclick="tog(this)"><div class="cb2">✓</div><div class="cl-label"><strong>Зарегистрироваться на Gumroad</strong><span>gumroad.com → Sign up → заполнить профиль.</span></div></li>
+      <li onclick="tog(this)"><div class="cb2">✓</div><div class="cl-label"><strong>Создать продукт на Gumroad</strong><span>New Product → загрузить PDF → написать описание (промпт из Раздела 4) → цена.</span></div></li>
+      <li onclick="tog(this)"><div class="cb2">✓</div><div class="cl-label"><strong>Опубликовать продукт</strong><span>Нажать Publish. Скопировать ссылку. Сделать скриншот страницы.</span></div></li>
+      <li onclick="tog(this)"><div class="cb2">✓</div><div class="cl-label"><strong>Опубликовать пост + сторис в Instagram</strong><span>Покажи «за кулисами», расскажи о проблеме, которую решает гайд. Добавь ссылку в bio.</span></div></li>
+      <li onclick="tog(this)"><div class="cb2">✓</div><div class="cl-label"><strong>Написать 10 знакомым лично 🎉</strong><span>Первая продажа почти всегда приходит от людей, которые тебя знают. Не стесняйся — ты создала реальную ценность.</span></div></li>
+    </ul>
+  </div>
+
+</div><!-- /course -->
+
+<script>
+// ─── LANDING ───
+function unlockCourse(){
+  document.getElementById('landing').style.display='none';
+  document.getElementById('course').style.display='block';
+  window.scrollTo(0,0);
+}
+
+function toggleFaq(btn){
+  const item = btn.parentElement;
+  item.classList.toggle('open');
+}
+
+// ─── COURSE NAV ───
+function showS(id, btn){
+  document.querySelectorAll('.course-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+// ─── CHECKLIST ───
+function tog(el){
+  el.classList.toggle('done');
+  const all = document.querySelectorAll('#cl li');
+  const done = document.querySelectorAll('#cl li.done').length;
+  const pct = Math.round(done/all.length*100);
+  document.getElementById('pfill').style.width = pct+'%';
+  document.getElementById('pct').textContent = done+' из '+all.length;
+}
+
+// ─── COPY PROMPTS ───
+function cp(btn){
+  const text = btn.nextElementSibling.getAttribute('data-t');
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent='Скопировано!';
+    btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent='Копировать';btn.classList.remove('copied');},2000);
+  });
+}
+</script>
+</body>
+</html>
